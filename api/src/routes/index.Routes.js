@@ -1,12 +1,19 @@
 import Router from 'express';
-import conn from '../database/dbconection.js';
+import { getUsuarios, getUsuario, createUsuario, updateUsuario, deleteUsuario } from '../controllers/usuarios.controller.js';
 
 const router = Router();
 
-router.get('/', (req, res) => {
-    const usuarios = conn.query(`SELECT * FROM usuarios`)
-    res.json(usuarios);
-})
+// Obtener lista de  usuarios
+router.get('/usuarios', getUsuarios);
+// Obtener Usuario
+router.get('/usuarios/:id', getUsuario);
+// Crear nuevo usuario
+router.post('/usuarios/', createUsuario);
+// Actualizar usuario.
+router.patch('/usuarios/:id', updateUsuario);
+// Eleiminar usuario.
+router.delete('/usuarios/:id', deleteUsuario);
+
 
 
 export default router;

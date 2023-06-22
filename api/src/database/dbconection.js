@@ -1,17 +1,10 @@
-import pool from 'mysql2';
-import { db, host, port, password, user } from '../config/config.js';
+import { createPool } from 'mysql2/promise';
+import { DB_HOST, DB_PORT, DB_PASSWORD, DB_USER, DB_DATABASE } from '../config/config.js';
 
-const conn = pool.createConnection({
-    host: host,
-    port: port,
-    user: user,
-    password: password,
-    database: db
-})
-
-conn.connect((err) => {
-    if (err) throw err;
-    console.log('Database is connected successfully !');
-})
-
-export default conn;
+export const pool = createPool({
+    host: DB_HOST,
+    port: DB_PORT,
+    user: DB_USER,
+    password: DB_PASSWORD,
+    database: DB_DATABASE,
+});
